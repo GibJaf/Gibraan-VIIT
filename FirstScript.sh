@@ -5,6 +5,7 @@ then
 	echo Enter atleast 1 argument
 else
 	echo Argument passed by you : $1
+	echo You used $# arguments
 fi
 
 echo Enjoy using script $0
