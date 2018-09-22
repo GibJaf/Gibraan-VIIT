@@ -1,0 +1,54 @@
+# Made from scratch by Gibraan Jafar
+# for website https://turingmachinesimulator.com/
+
+name: a^n.b^n.c^n
+init: q0
+accept: qAccept
+
+q0,a
+q1,X,>
+
+q1,Y
+q1,Y,>
+
+q1,a
+q1,a,>
+
+q1,b
+q2,Y,>
+
+q2,Z
+q2,Z,>
+
+q2,b
+q2,b,>
+
+q2,c
+q3,Z,<
+
+q3,a
+q3,a,<
+
+q3,b
+q3,b,<
+
+q3,Y
+q3,Y,<
+
+q3,Z
+q3,Z,<
+
+q3,X
+q0,X,>
+
+q0,Y
+q4,Y,>
+
+q4,Z
+q4,Z,>
+
+q4,Y
+q4,Y,>
+
+q4,_
+qAccept,_,-
