@@ -1,0 +1,30 @@
+%{
+#include<stdio.h>
+%}
+
+%token SUB VERB OBJ CONJ
+
+%%
+
+sentence:simple|compound
+simple:SUB VERB OBJ {printf("\n Valid Simple Sentence");};
+compound:simple CONJ simple {printf("\n Valid Compound Sentence");};
+
+%%
+
+yywrap()
+{
+	return 0;
+}
+
+yyerror()
+{
+	printf("\n Invalid Sentence !!! \n");
+}
+
+main()
+{
+	printf("\n Enter Sentence : ");
+	yyparse();
+	yywrap();
+}

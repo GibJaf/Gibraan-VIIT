@@ -1,0 +1,10 @@
+Acc. Karnik ma'am :
+lex abc.l
+gcc lex.yy.c
+./a.out
+
+
+Acc Internet :
+lex <filename.l>
+cc lex.yy.c -lfl
+./a.out
