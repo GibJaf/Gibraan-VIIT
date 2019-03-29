@@ -8,3 +8,12 @@ Acc Internet :
 lex <filename.l>
 cc lex.yy.c -lfl
 ./a.out
+
+
+Lessons : 
+1) Lex in the rules section shows error on one line below where there is 
+   an error.
+2) There can not be 2 rules with overlapping rules .
+3) Only such /* comment */ are allowed . Also put a space before /* 
+4) For any token , only action corresponding to only one rule will get
+	executed . It's like an if-else_if-else_if thing .
