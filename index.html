@@ -3,13 +3,51 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<style>
+	table , th , td , tr {
+		border : 1px solid black;
+		border-collapse : collapse;
+		text-align : center;
+	}
+</style>
+
 </head>
 <body>
-
-<a href="register.html">CLick here to register</a>
-<br>
-<a href="login.html">CLick here to login</a>
-<br>
-
+	<h1> Fetch All Values </h1>
+	<button onClick="LoadStuff()"> GET STUFF </button>
+	<table id = "table1" cellspacing="1" cellpadding="1" align="center"></table>
+	<br>
+	<br>
+	
+	<script>
+	
+	var LoadStuff = function() {
+	
+		if(window.XMLHttpRequest) {
+			xmlhttp = new XMLHttpRequest();
+		} else {
+			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		
+		xmlhttp.open("GET","students.xml",false);
+		xmlhttp.send();
+		xmlDoc=xmlhttp.responseXML;
+		
+		var table_content = "";
+		table_content += "<tr><th>Name</th><th>Age</th><th>Email</th><th>Roll</th></tr>";
+		var x = xmlDoc.getElementsByTagName("student");
+		
+		for(i=0;i<x.length;i++){
+			table_content += "<tr><td>";
+			table_content += xmlDoc.getElementsByTagName("name")[i].childNodes[0].nodeValue  + "</td><td>"
+							+xmlDoc.getElementsByTagName("age")[i].childNodes[0].nodeValue   + "</td><td>"
+							+xmlDoc.getElementsByTagName("email")[i].childNodes[0].nodeValue + "</td><td>"
+							+xmlDoc.getElementsByTagName("roll")[i].childNodes[0].nodeValue  + "</td></tr>";
+		}
+		table_content += "</table>";
+		
+		document.getElementById("table1").innerHTML = table_content;
+	}
+	</script>
 </body>
 </html>
