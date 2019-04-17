@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<te>
+	<student>
+		<name> Gibraan Jafar </name>
+		<age> 21 </age>
+		<email> gibraan.jafar@viit.ac.in </email>
+		<roll> 321004 </roll>
+	</student>
+	
+	<student>
+		<name> Arsalaan Jafar </name>
+		<age> 18 </age>
+		<email> arsalaan.jafar@viit.ac.in </email>
+		<roll> 321005 </roll>
+	</student>
+	
+</te>
