@@ -1,0 +1,20 @@
+MACRO Addition &X,&Y
+MOVER AREG,X
+ADD AREG,Y
+MOVEM AREG,X
+MEND
+
+MACRO Subtraction &X,&Y
+MOVER AREG,X
+SUB AREG,Y
+MOVEM AREG,X
+MEND
+
+
+START 100
+Addition 23,21
+END
+
+
+
+

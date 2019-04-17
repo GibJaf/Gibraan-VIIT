@@ -1,0 +1,30 @@
+%{
+/*
+*Program to count no of characters, words and lines 
+*/
+#include<stdio.h>
+#include<string.h>
+int c=0,w=0,l=0;
+%}
+
+%%
+[\t ]+  			/* ignore whitespace */
+
+[a-zA-z]+ 			{w=w+1; c=c+ yyleng;}
+[\n ]                           {l=l+1;}
+['{','}''(',')',.,",;]                {c=c+1;}
+%%
+
+int main()
+{
+	yyin= fopen("file1.txt","r");
+	yylex();
+	printf("\nWord Count : %d",w);
+	printf("\nChar Count : %d",c);
+	printf("\nLine Count : %d\n",l);
+}
+
+int yywrap()
+{
+
+}
