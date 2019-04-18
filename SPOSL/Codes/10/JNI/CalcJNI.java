@@ -5,9 +5,9 @@ public class CalcJNI
 	{
 		System.loadLibrary("Calc");
 	}
-	
+
 	private native void doCalculate(int a,int b,char ch);
-	
+
 	public static void main(String[] args)
 	{
 		int a,b;
