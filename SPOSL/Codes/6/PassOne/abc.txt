@@ -1,0 +1,10 @@
+    START 100
+    MOVER AREG A
+    MOVEM BREG ='4'
+    LTORG
+    ADD AREG B
+    MOVEM AREG B
+    MOVEM AREG ='3'
+A   DC 1
+B   DC 2
+    END

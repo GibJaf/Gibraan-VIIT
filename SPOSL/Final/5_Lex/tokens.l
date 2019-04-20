@@ -16,12 +16,12 @@
 int main()
 {
 	yyin= fopen("file1.txt","r");
-	printf("\nTOKENS    \n");
+	printf("\nTOKENS:\n");
 	yylex();
 	printf("\n");
 }
 
-int yywrap()
-{
+
+int yywrap(){
 
 }

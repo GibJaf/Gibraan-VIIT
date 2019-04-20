@@ -1755,6 +1755,5 @@ int main(){
 }
 
 int yywrap(){
-
 }
 
