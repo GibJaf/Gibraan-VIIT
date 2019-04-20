@@ -47,13 +47,15 @@ extern int yydebug;
   {
     TYPE = 258,
     VAR = 259,
-    SC = 260
+    SC = 260,
+    C = 261
   };
 #endif
 /* Tokens.  */
 #define TYPE 258
 #define VAR 259
 #define SC 260
+#define C 261
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED

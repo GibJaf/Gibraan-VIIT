@@ -1,10 +1,14 @@
 %{
 #include<stdio.h>
 %}
-%token TYPE VAR SC
+%token TYPE VAR SC C
 
 %%
-start:TYPE VAR SC {printf("Valid Declaration\n");};
+
+start : single|multiple
+single : TYPE VAR SC {printf("Valid Declaration\n");};
+multiple: TYPE VAR mul SC {printf("Valid Declaration\n");};
+mul : C VAR | C VAR mul;
 %%
 
 yywrap(){return 0;}

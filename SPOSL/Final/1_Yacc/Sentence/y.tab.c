@@ -62,11 +62,10 @@
 
 
 /* Copy the first part of user declarations.  */
-#line 1 "java.y" /* yacc.c:339  */
+#line 1 "sentence.y" /* yacc.c:339  */
 
-#include<stdio.h>
 
-#line 70 "y.tab.c" /* yacc.c:339  */
+#line 69 "y.tab.c" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -101,15 +100,17 @@ extern int yydebug;
 # define YYTOKENTYPE
   enum yytokentype
   {
-    TYPE = 258,
-    VAR = 259,
-    SC = 260
+    SUBJECT = 258,
+    VERB = 259,
+    OBJECT = 260,
+    CONJUNCTION = 261
   };
 #endif
 /* Tokens.  */
-#define TYPE 258
-#define VAR 259
-#define SC 260
+#define SUBJECT 258
+#define VERB 259
+#define OBJECT 260
+#define CONJUNCTION 261
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
@@ -127,7 +128,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 131 "y.tab.c" /* yacc.c:358  */
+#line 132 "y.tab.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -367,23 +368,23 @@ union yyalloc
 #endif /* !YYCOPY_NEEDED */
 
 /* YYFINAL -- State number of the termination state.  */
-#define YYFINAL  4
+#define YYFINAL  6
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   4
+#define YYLAST   7
 
 /* YYNTOKENS -- Number of terminals.  */
-#define YYNTOKENS  6
+#define YYNTOKENS  7
 /* YYNNTS -- Number of nonterminals.  */
-#define YYNNTS  2
+#define YYNNTS  4
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  2
+#define YYNRULES  5
 /* YYNSTATES -- Number of states.  */
-#define YYNSTATES  6
+#define YYNSTATES  10
 
 /* YYTRANSLATE[YYX] -- Symbol number corresponding to YYX as returned
    by yylex, with out-of-bounds checking.  */
 #define YYUNDEFTOK  2
-#define YYMAXUTOK   260
+#define YYMAXUTOK   261
 
 #define YYTRANSLATE(YYX)                                                \
   ((unsigned int) (YYX) <= YYMAXUTOK ? yytranslate[YYX] : YYUNDEFTOK)
@@ -418,14 +419,14 @@ static const yytype_uint8 yytranslate[] =
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     1,     2,     3,     4,
-       5
+       5,     6
 };
 
 #if YYDEBUG
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,     8,     8
+       0,     7,     7,     7,     8,     9
 };
 #endif
 
@@ -434,8 +435,8 @@ static const yytype_uint8 yyrline[] =
    First, the terminals, then, starting at YYNTOKENS, nonterminals.  */
 static const char *const yytname[] =
 {
-  "$end", "error", "$undefined", "TYPE", "VAR", "SC", "$accept",
-  "statement", YY_NULLPTR
+  "$end", "error", "$undefined", "SUBJECT", "VERB", "OBJECT",
+  "CONJUNCTION", "$accept", "sentence", "simple", "compound", YY_NULLPTR
 };
 #endif
 
@@ -444,14 +445,14 @@ static const char *const yytname[] =
    (internal) symbol number NUM (which must be that of a token).  */
 static const yytype_uint16 yytoknum[] =
 {
-       0,   256,   257,   258,   259,   260
+       0,   256,   257,   258,   259,   260,   261
 };
 # endif
 
-#define YYPACT_NINF -4
+#define YYPACT_NINF -5
 
 #define yypact_value_is_default(Yystate) \
-  (!!((Yystate) == (-4)))
+  (!!((Yystate) == (-5)))
 
 #define YYTABLE_NINF -1
 
@@ -462,7 +463,7 @@ static const yytype_uint16 yytoknum[] =
      STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
-      -3,    -2,     1,    -1,    -4,    -4
+      -3,    -2,     1,    -1,    -5,     2,    -5,    -3,    -5,    -5
 };
 
   /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -470,19 +471,19 @@ static const yytype_int8 yypact[] =
      means the default is an error.  */
 static const yytype_uint8 yydefact[] =
 {
-       0,     0,     0,     0,     1,     2
+       0,     0,     0,     2,     3,     0,     1,     0,     4,     5
 };
 
   /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-      -4,    -4
+      -5,    -5,    -4,    -5
 };
 
   /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
 {
-      -1,     2
+      -1,     2,     3,     4
 };
 
   /* YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
@@ -490,31 +491,31 @@ static const yytype_int8 yydefgoto[] =
      number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_uint8 yytable[] =
 {
-       1,     4,     3,     0,     5
+       1,     6,     5,     9,     0,     7,     0,     8
 };
 
 static const yytype_int8 yycheck[] =
 {
-       3,     0,     4,    -1,     5
+       3,     0,     4,     7,    -1,     6,    -1,     5
 };
 
   /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
      symbol of state STATE-NUM.  */
 static const yytype_uint8 yystos[] =
 {
-       0,     3,     7,     4,     0,     5
+       0,     3,     8,     9,    10,     4,     0,     6,     5,     9
 };
 
   /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
 static const yytype_uint8 yyr1[] =
 {
-       0,     6,     7
+       0,     7,     8,     8,     9,    10
 };
 
   /* YYR2[YYN] -- Number of symbols on the right hand side of rule YYN.  */
 static const yytype_uint8 yyr2[] =
 {
-       0,     2,     3
+       0,     2,     1,     1,     3,     3
 };
 
 
@@ -1190,14 +1191,20 @@ yyreduce:
   YY_REDUCE_PRINT (yyn);
   switch (yyn)
     {
-        case 2:
-#line 8 "java.y" /* yacc.c:1646  */
-    {printf(" Variable declaration is valid \n");}
-#line 1197 "y.tab.c" /* yacc.c:1646  */
+        case 4:
+#line 8 "sentence.y" /* yacc.c:1646  */
+    {printf("Valid Simple sentence \n");}
+#line 1198 "y.tab.c" /* yacc.c:1646  */
+    break;
+
+  case 5:
+#line 9 "sentence.y" /* yacc.c:1646  */
+    {printf("Valid Compound sentence \n");}
+#line 1204 "y.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 1201 "y.tab.c" /* yacc.c:1646  */
+#line 1208 "y.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1425,20 +1432,17 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 10 "java.y" /* yacc.c:1906  */
+#line 10 "sentence.y" /* yacc.c:1906  */
 
 
-yywrap(){return 0;}
-
-yyerror()
-{
-printf(" Invalid declaration \n");
+yyerror(){
+printf("Invalid sentence \n");
 }
 
+yywrap(){
+}
 
-int main()
-{
-  printf(" Enter java variable declaration statement : ");
-  yyparse();
-  yywrap();
+int main(){
+	printf(" Enter sentence : ");
+	yyparse();
 }

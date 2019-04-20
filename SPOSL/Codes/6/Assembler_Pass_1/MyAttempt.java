@@ -109,15 +109,17 @@ public class MyAttempt{
             String s2[]=s1.replaceAll("^[,\\s]+", "").split("[,\\s]+");
 
 
+                System.out.print("LC : "+LC+"\t");
+                for(int i=0;i<s2.length;i++){
+                    System.out.print(" "+s2[i]);
+                    if(s2[i] == "200")
+                        break;
+                }
 
-            System.out.print("LINE : ");
-            for(int i=0;i<s2.length;i++){
-                System.out.print(" "+s2[i]);
-            }
-            System.out.println("            LC = "+LC);
+                System.out.println();
 
-            for(int i=0;i<s2.length;i++){
-                System.out.println("WORD "+s2[i]+" is "+obj.Identify(s2[i]));
+                for(int i=0;i<s2.length;i++){
+                    System.out.println("word "+s2[i]+" is "+obj.Identify(s2[i]));
 
                 if(s2[i] == "START")
                     System.out.println(" FOUND START");
