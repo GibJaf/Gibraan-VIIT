@@ -7,7 +7,8 @@ extern yylval;
 
 int |
 char |
-float return TYPE;
+float |
+String return TYPE;
 
 ";" return SC;
 
