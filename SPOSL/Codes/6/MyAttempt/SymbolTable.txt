@@ -1,4 +1,4 @@
       SYMBOL TABLE   
 Index 	 Symbol 	 Address
-0 	   X 		    302
-1 	   Y 		    303
+0 	   X 		    203
+1 	   Y 		    204
