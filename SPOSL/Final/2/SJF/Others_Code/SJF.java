@@ -15,8 +15,8 @@ class SJF
 		System.out.println("\nEnter Data Of "+num+" Processes : ");
 		for(int i=0;i<num;i++)
 		{
-			System.out.print("\nEnter Process Name   : ");
-			n=scan.next();
+			//System.out.print("\nEnter Process Name   : ");
+			n = "a";//=scan.next();
 			System.out.print("\nEnter CPU Burst Time : ");
 			ct=scan.nextInt();
 			System.out.print("\nEnter Arrival Time   : ");
@@ -24,7 +24,7 @@ class SJF
 			proc[i]=new Process();
 			proc[i].Input(i,n,a,ct);
 		}
-		
+
 		for(int i=0;i<num;i++)
 		{
 			for(int j=i;j<num;j++)
@@ -38,7 +38,7 @@ class SJF
 				}
 			}
 		}
-				
+
 		for(int i=0;i<num;i++)
 		{
 			if(flag==0)
@@ -53,7 +53,7 @@ class SJF
 				proc[i].turnarnd=proc[i].cpu+proc[i].wait;
 			}
 		}
-		
+
 		System.out.println("\nSJF Scheduling...");
 		for(int i=0;i<num;i++)
 		{
@@ -62,7 +62,7 @@ class SJF
 	}
 }
 
-class Process 
+class Process
 {
 	public int no;
 	public String name;
@@ -71,7 +71,7 @@ class Process
 	public int turnarnd;
 	public int wait;
 
-	public void Input(int num, String n, int a, int c) 
+	public void Input(int num, String n, int a, int c)
 	{
 		no=num;
 		name=n;
@@ -81,7 +81,7 @@ class Process
 		wait=0;
 	}
 
-	public void Print() 
+	public void Print()
 	{
 		System.out.println("\nProcess Number  : "+no);
 		System.out.println("Process Name    : "+name);
