@@ -31,6 +31,7 @@ public class MyAttempt{
         HashMap<String,String> Registers = new HashMap<>();
         ArrayList<SymbolTableRow> SymbolTable = new ArrayList<SymbolTableRow>();
         ArrayList<LiteralTableRow> LiteralTable = new ArrayList<LiteralTableRow>();
+        ArrayList<Integer> PoolTable = new ArrayList<Integer>();
 
         MyAttempt(){
             AD.put("START","00");
@@ -60,6 +61,7 @@ public class MyAttempt{
             Registers.put("CREG","(RG,03)");
             Registers.put("DREG","(RG,04)");
 
+            PoolTable.add(0);
 
         }
 
@@ -154,13 +156,70 @@ public class MyAttempt{
             }
     }
 
-    boolean Check_Literal(String word){
-        if(word.matches("[a-zA-Z]+[a-zA-Z0-9]*")){
-            return true;
+    String Check_Literal(String word){
+        if(word.matches("=[0-9]+")){
+            if(!CheckLiteralExists(word))
+                return InsertIntoLiteralTable(word);
+            else
+                return LocationFromLiteralTable(word);
         }
         else
-            return false;
+            return "NULL";
     }
+
+    boolean CheckLiteralExists(String word){
+        Iterator itr = LiteralTable.iterator();
+        boolean flag = false;
+            while(itr.hasNext()){
+                LiteralTableRow lit = (LiteralTableRow)itr.next();
+                if(lit.literal.equals(word)){ // symbol found in symbol table
+                    flag = true;
+                    break;
+                }
+            }
+
+            if(flag == false); // literal does't exist in literal table
+
+                return flag;
+    }
+
+    String InsertIntoLiteralTable(String word){
+        int index = LiteralTable.size();
+        LiteralTable.add(new LiteralTableRow(index,word,0));
+        return "(L,"+Integer.toString(index)+")"; // (S,__) is returned .
+    }
+
+    String LocationFromLiteralTable(String word){
+        String result = "";
+        Iterator itr = LiteralTable.iterator();
+        while(itr.hasNext()){
+            LiteralTableRow lit = (LiteralTableRow)itr.next();
+                if(lit.literal.equals(word)){
+                    result =  "(L,"+Integer.toString(lit.index)+")";
+                }
+            }
+            return result;
+    }
+
+    void AddAddressLiteralTable(int LC){
+        int mark = 0 ;// marks till where addresses have been allocated .
+        int count = 0;// counts literals that have been allocated addresses in this run.
+                      // used to update PoolTable
+
+        for(int i=0;i<LiteralTable.size();i++){
+            if(LiteralTable.get(i).address == 0){
+                mark = i; break;
+            }
+        }
+
+        for(int i=mark;i<LiteralTable.size();i++){
+            LiteralTable.get(i).address = LC++;
+            count++;
+        }
+
+        PoolTable.add(count);
+    }
+
 
     // return tuple(__,__)
     String Identify(String str){
@@ -184,6 +243,8 @@ public class MyAttempt{
             return "(C,"+str+")";
         }else if((symbol_result = Check_Symbol(str))!="NULL"){
             return symbol_result;
+        }else if((literal_result = Check_Literal(str))!="NULL"){
+            return literal_result;
         }else{
             return "Unidentified";
         }
@@ -198,6 +259,7 @@ public class MyAttempt{
             SymbolTableRow sym = (SymbolTableRow)itr.next();
             System.out.println(sym.index+" \t   "+sym.symbol+" \t\t    "+sym.address);
             }
+        System.out.println("----------------");
     }
 
     void WriteSymbolTable(){
@@ -212,7 +274,7 @@ public class MyAttempt{
             }
             fw.close();
         }catch(Exception e){
-            System.out.println(" Error in writing to SymbolTable => "+e);
+            System.out.println(" Error in writing SymbolTable.txt => "+e);
         }
     }
 
@@ -224,30 +286,55 @@ public class MyAttempt{
             LiteralTableRow lit = (LiteralTableRow)itr.next();
             System.out.println(lit.index+" \t   "+lit.literal+" \t\t    "+lit.address);
             }
+        System.out.println("----------------");
     }
 
     void WriteLiteralTable(){
         Iterator itr = LiteralTable.iterator();
         try{
             FileWriter fw = new FileWriter("LiteralTable.txt");
-            fw.write("      Literal TABLE   \n");
+            fw.write("      LITERAL TABLE   \n");
             fw.write("Index \t Literal \t Address \n");
             while(itr.hasNext()){
                 LiteralTableRow lit = (LiteralTableRow)itr.next();
-                fw.write(lit.index+" \t   "+lit.literal+" \t\t    "+lit.address);
+                fw.write(lit.index+" \t\t   "+lit.literal+" \t\t    "+lit.address+"\n");
             }
             fw.close();
         }catch(Exception e){
-            System.out.println(" Error in writing to LiteralTable => "+e);
+            System.out.println(" Error in writing LiteralTable.txt => "+e);
         }
     }
 
+
+    void DisplayPoolTable(){
+        System.out.println("      POOL TABLE   ");
+        Iterator itr = PoolTable.iterator();
+        while(itr.hasNext()){
+            System.out.println("\t    "+itr.next());
+        }
+        System.out.println("-------------------");
+    }
+
+    void WritePoolTable(){
+        Iterator itr = PoolTable.iterator();
+        try{
+            FileWriter pt = new FileWriter("PoolTable.txt");
+            pt.write("      POOL TABLE   \n");
+            while(itr.hasNext()){
+                pt.write("\t    "+itr.next()+"\n");
+            }
+            pt.close();
+        }catch(Exception e){
+            System.out.println(" Error while writing PoolTable.txt =>"+e);
+        }
+    }
 
     public static void main(String[] args)throws FileNotFoundException , IOException {
 
         MyAttempt obj = new MyAttempt();//populate AD,IS,DL HashMap
 
-        FileReader fr = new FileReader("Assembly.txt");
+        FileReader fr = new FileReader("Assembly1.txt");
+	    //FileReader fr = new FileReader("Assembly2.txt");
         FileWriter IC = new FileWriter("IntermediateCode.txt");
         BufferedReader br = new BufferedReader(fr);
         String s1 = null , result;
@@ -271,6 +358,9 @@ public class MyAttempt{
                 if(s2[i].equals("DC"))
                     obj.AddAddressSymbolTable(s2[i-1],LC);
 
+                if(s2[i].equals("LTORG") || s2[i].equals("END"))
+                    obj.AddAddressLiteralTable(LC);
+
                 result = obj.Identify(s2[i]);
                 System.out.println("word is "+result);
                 IC.write(" "+result);
@@ -286,6 +376,8 @@ public class MyAttempt{
         obj.WriteSymbolTable();
         obj.DisplayLiteralTable();
         obj.WriteLiteralTable();
+        obj.DisplayPoolTable();
+        obj.WritePoolTable();
         IC.close();
     }
 }

@@ -1,2 +1,2 @@
-      Literal TABLE   
+      LITERAL TABLE   
 Index 	 Literal 	 Address 

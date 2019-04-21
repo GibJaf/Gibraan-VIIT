@@ -1,0 +1,6 @@
+      LITERAL TABLE   
+Index 	 Literal 	 Address 
+0 		   =1 		    202
+1 		   =2 		    203
+2 		   =4 		    205
+3 		   =3 		    206

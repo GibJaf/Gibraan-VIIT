@@ -333,8 +333,8 @@ public class MyAttempt{
 
         MyAttempt obj = new MyAttempt();//populate AD,IS,DL HashMap
 
-        FileReader fr = new FileReader("Assembly1.txt");
-	    //FileReader fr = new FileReader("Assembly2.txt");
+        //FileReader fr = new FileReader("Assembly1.txt");
+	FileReader fr = new FileReader("Assembly2.txt");
         FileWriter IC = new FileWriter("IntermediateCode.txt");
         BufferedReader br = new BufferedReader(fr);
         String s1 = null , result;
