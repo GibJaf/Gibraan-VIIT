@@ -50,7 +50,7 @@ public class MyAttempt{
                         }else{
                             t+=p.rem_bt;
                             p.rem_bt = 0;
-                            p.wt = t - p.bt;
+                            p.wt = t - p.bt; //very important
                             sequence = sequence.concat("->"+Integer.toString(p.pid));
                         }
                     }

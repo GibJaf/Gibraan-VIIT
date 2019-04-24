@@ -9,7 +9,7 @@
 %%
 [\t ]+  			                  /* ignore whitespace */
 [\n ]                                 /* ignore newine */
-[a-zA-z]+ 			                  {printf("\n%s",yytext);}
+[a-zA-z0-9]+ 			                  {printf("\n%s",yytext);}
 ['{','}''(',')','.','"',';']          {printf("\n%s",yytext);}
 %%
 

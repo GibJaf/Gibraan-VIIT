@@ -1,3 +1,6 @@
+// Assumed that all processes arrival_time array
+// has arrival times in ascending order.
+
 public class MyAttempt {
 
     static void findWaitingTime(int n,int at[],int bt[],int wt[]){

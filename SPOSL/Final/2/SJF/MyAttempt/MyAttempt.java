@@ -1,7 +1,7 @@
 /* In SJF if you assume Arrival Time for all processes = 0
     then it is simple Priority scheduling except that here we
     are assigning priority based on burst time .
-    If arrival time = 0 for all processes then there is basically not difference
+    If arrival time = 0 for all processes then there is basically no difference
     between preemptive and non-preemptive
 
     Am making this program for arrival time = 0 for all processes because
