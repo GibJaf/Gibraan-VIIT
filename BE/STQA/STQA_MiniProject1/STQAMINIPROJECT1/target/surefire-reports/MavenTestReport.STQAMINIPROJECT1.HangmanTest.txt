@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: MavenTestReport.STQAMINIPROJECT1.HangmanTest
+-------------------------------------------------------------------------------
+Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.235 sec

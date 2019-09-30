@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
+  <test thread-count="5" name="Default test(failed)">
+    <classes>
+      <class name="pack.NewTest">
+        <methods>
+          <include name="click2"/>
+          <include name="checkResultAfterRefresh"/>
+          <include name="click5"/>
+          <include name="click4"/>
+          <include name="openBrowser"/>
+          <include name="click1"/>
+          <include name="click6"/>
+          <include name="netIsAvailable"/>
+          <include name="click3"/>
+          <include name="restartbuttoncheck"/>
+          <include name="closeBrowser"/>
+          <include name="click"/>
+          <include name="checkResult"/>
+          <include name="checkTitle"/>
+          <include name="refreshbrowser"/>
+        </methods>
+      </class> <!-- pack.NewTest -->
+    </classes>
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->
