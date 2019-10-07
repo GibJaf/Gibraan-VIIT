@@ -22,7 +22,8 @@ public class NewTest {
 	@Test(priority=0)
 	public void netIsAvailable() {
 		
-		extent = new ExtentReports("C:\\Users\\Ankit\\eclipse-workspace\\STQA MINIPROJECT2\\test-output\\extentreport.html",true);
+		//extent = new ExtentReports("C:\\Users\\Ankit\\eclipse-workspace\\STQA MINIPROJECT2\\test-output\\extentreport.html",true);
+		extent = new ExtentReports("/home/gibraan/Git_Projects/Gibraan-VIIT/BE/STQA/STQA_MiniProject2/test-output/extentreport.html",true);
 		test=extent.startTest("Verify net is connected or not");
 	    
 		try {
