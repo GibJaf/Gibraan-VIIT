@@ -1,0 +1,213 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<aiml version="1.0.1" encoding = "UTF-8">
+   <category>
+      <pattern> Hello </pattern>
+      
+      <template>
+         Hello! What is your name?
+      </template>
+      
+	</category>
+
+	<category>
+      <pattern> Hi </pattern>
+      
+      <template>
+         Hello! What is your name?
+      </template>
+      
+	</category>
+    
+<category>
+      <pattern> Hey </pattern>
+      
+      <template>
+         Hello! What is your name?
+      </template>
+      
+	</category>
+    
+
+
+    <category>
+      
+      <pattern>MY NAME IS *</pattern>
+      <pattern>*</pattern>
+      <template>
+            Hi,<set name="username"><star/></set> how may I help you ?
+      </template>
+   </category>
+   
+   <category>
+   	<pattern>BYE <name="username"></pattern>
+   	<template>
+   	<srai>BYE</srai>
+   	</template>
+   </category>
+   
+   <category>
+   	<pattern>_ INVESTMENT</pattern>
+   	<template><srai>INVESTMENT</srai></template>
+   </category>
+
+   <category>
+   	<pattern>INVESTMENT *</pattern>
+   	<template><srai>INVESTMENT</srai></template>
+   </category>
+   
+   <category>
+   	<pattern>_ INVESTMENT *</pattern>
+   	<template><srai>INVESTMENT</srai></template>
+   </category>
+   
+   <category>
+   	<pattern>INVESTMENT</pattern>
+   	<template>What is your occupation?</template>
+   </category>
+   
+   <category>
+   	<pattern>BUSINESS</pattern>
+   	<template>
+   		<random>
+   		<li>High risk brings high rewards You might look at Stocks and Shares</li>
+   		<li>Intra Day Trading seems to be an option for you</li>
+   		<li>Your Money might earn you good rewards in Mutual Funds</li>
+<!-- 
+   		<li>High risk, high rewards !! You might look at Stocks and Shares. </li>
+   		<li>Intra Day Trading seems to be an option for you. </li>
+   		<li>Your Money might earn you good rewards in Market Funds. Here's a suggestion: Mutual Fund investments are subject to market risks. Please read all scheme related documents carefully. </li> -->
+   		</random>
+   	</template>
+   </category>
+
+   <category>
+   	<pattern>STUDENT</pattern>
+   	<template>
+   		<random>
+   		<li>Open a brokerage account for long-term investments</li>
+   		<li>Savings account seems a good option</li>
+   		<li>Post-Office Investment</li>
+   		<li>IPO's are in boom</li>
+   		</random>
+   	</template>
+   </category>
+   
+   <category>
+   	<pattern>SAVINGS</pattern>
+   	<template>
+   		<random>
+   		<li>Direct Equity</li>
+   		<li>Equity Mutual Funds</li>
+   		<li>National Pension System</li>
+   		<li>Fixed Deposits</li>
+   		<li>Real Estate</li>
+   		<li>Gold</li>
+		<li>Currency Trading</li>
+   		</random>
+   	</template>
+   </category>   
+
+   <category>
+   	<pattern>_ STOCK AND SHARES</pattern>
+   	<template><srai>STOCK AND SHARES</srai></template>
+   </category>
+   
+   <category>
+   	<pattern>STOCK AND SHARES *</pattern>
+   	<template><srai>STOCK AND SHARES</srai></template>
+   </category>
+   
+   <category>
+   	<pattern>_ STOCK AND SHARES *</pattern>
+   	<template><srai>STOCK AND SHARES</srai></template>
+   </category>
+
+   <category>
+   	<pattern>STOCK AND SHARES</pattern>
+   	<template>
+   		<random>
+   		<li>TCS is in a great BOOM </li>
+   		<li>MRF or Eicher motors or PAGE industries are some of the top stocks. </li>
+   		</random>
+   	</template>
+   </category>
+
+<!-- this is -->
+<category>
+   	<pattern>_ SAVING ACCOUNT</pattern>
+   	<template><srai>SAVINGS ACCOUNT</srai></template>
+   </category>
+   
+   <category>
+   	<pattern>SAVING ACCOUNT *</pattern>
+   	<template><srai>SAVINGS ACCOUNT</srai></template>
+   </category>
+   
+   <category>
+   	<pattern>_ SAVING ACCOUNT *</pattern>
+   	<template><srai>SAVINGS ACCOUNT</srai></template>
+   </category>
+
+	<category>
+   	<pattern>SAVINGS ACCOUNT</pattern>
+   	<template>
+   		<random>
+   		<li>Private banks offer interest at 4% per annum. </li>
+   		<li>Government banks offer 6% to 7% interests. </li>
+		<li>Small scale banks offer interests upto 10% per annum. </li>
+   		</random>
+   	</template>
+   </category>
+   <!-- khatam -->
+
+   <category>
+   	<pattern>_ BUSINESS</pattern>
+   	<template><srai>BUSINESS</srai></template>
+   </category>
+   
+   <category>
+   	<pattern>BUSINESS *</pattern>
+   	<template><srai>BUSINESS</srai></template>
+   </category>
+   
+   <category>
+   	<pattern>_ BUSINESS *</pattern>
+   	<template><srai>BUSINESS</srai></template>
+   </category>
+   
+   <category>
+   	<pattern>_ STUDENT</pattern>
+   	<template><srai>STUDENT</srai></template>
+   </category>
+   
+   <category>
+   	<pattern>STUDENT *</pattern>
+   	<template><srai>STUDENT</srai></template>
+   </category>
+   
+   <category>
+   	<pattern>_ STUDENT *</pattern>
+   	<template><srai>STUDENT</srai></template>
+   </category>
+   
+   <category>
+   	<pattern>_ SAVINGS</pattern>
+   	<template><srai>SAVINGS</srai></template>
+   </category>
+   
+   <category>
+   	<pattern>SAVINGS *</pattern>
+   	<template><srai>SAVINGS</srai></template>
+   </category>
+   
+   <category>
+   	<pattern>_ SAVINGS *</pattern>
+   	<template><srai>SAVINGS</srai></template>
+   </category>
+
+   <category>
+   	<pattern>BYE</pattern>
+   	<template>Bye, <get name="username"> have a nice day!!</get></template>
+   </category>
+   
+</aiml>

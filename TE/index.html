@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Validate and Sort Input numbers :P</h2>
+
+<div id="div1">
+Enter a positive number : <input id="num1">
+</div>
+
+<br>
+
+<div id="div2">
+Enter one more positive number : <input id="num2">
+</div>
+
+<br>
+
+<div id="div3">
+Enter one more positive number : <input id="num3">
+</div>
+
+
+<br>
+
+<button type="button" onclick="myFunction()"><b>Validate and Sort</b></button>
+
+<div>
+<p> Numbers in descending order => <input id="output">
+</p>
+</div>
+
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+	var num1 = document.getElementById("num1").value;
+	var num2 = document.getElementById("num2").value;
+	var num3 = document.getElementById("num3").value;
+
+	if(!(num1>=0 && num2>=0 && num3>=0)){
+		alert("Enter only positive numbers !");
+	}else{	
+	// Sorting and displaying result
+	var arr = []
+	arr.push(num1);
+	arr.push(num2);
+	arr.push(num3);
+	arr.sort(function(a,b){return b-a});
+	var text = arr.join(' > ');
+	document.getElementById("output").value = text;
+	}
+
+	
+}
+</script>
+
+</body>
+</html>

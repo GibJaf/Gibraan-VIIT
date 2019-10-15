@@ -1,0 +1,118 @@
+mongoimport --db mapr --collection movie --file movies.json
+2018-09-20T09:22:41.470+0530	connected to: localhost
+2018-09-20T09:22:41.688+0530	imported 15 documents
+
+mongo
+
+show dbs
+
+use mapr
+
+> show collections
+movie
+
+> db.movie.find().pretty()
+{
+	"_id" : ObjectId("5ba31989c55e7d9dbeef7213"),
+	"User" : "Nilima",
+	"Movie" : "HAHK",
+	"Rating" : 5
+}
+{
+	"_id" : ObjectId("5ba31989c55e7d9dbeef7214"),
+	"User" : "Sunil",
+	"Movie" : "DDLJ",
+	"Rating" : 4
+}
+{
+	"_id" : ObjectId("5ba31989c55e7d9dbeef7215"),
+	"User" : "Nilima",
+	"Movie" : "DDLJ",
+	"Rating" : 5
+}
+{
+	"_id" : ObjectId("5ba31989c55e7d9dbeef7216"),
+	"User" : "Anil",
+	"Movie" : "DDLJ",
+	"Rating" : 4
+}
+{
+	"_id" : ObjectId("5ba31989c55e7d9dbeef7217"),
+	"User" : "Anil",
+	"Movie" : "KASAM",
+	"Rating" : 2
+}
+{
+	"_id" : ObjectId("5ba31989c55e7d9dbeef7218"),
+	"User" : "Anil",
+	"Movie" : "KASAM",
+	"Rating" : 1
+}
+{
+	"_id" : ObjectId("5ba31989c55e7d9dbeef7219"),
+	"User" : "Sunil",
+	"Movie" : "SANAM",
+	"Rating" : 2
+}
+{
+	"_id" : ObjectId("5ba31989c55e7d9dbeef721a"),
+	"User" : "XYZ",
+	"Movie" : "INFINITY WAR",
+	"Rating" : 5
+}
+{
+	"_id" : ObjectId("5ba31989c55e7d9dbeef721b"),
+	"User" : "Anil",
+	"Movie" : "INFINITY WAR",
+	"Rating" : 5
+}
+{
+	"_id" : ObjectId("5ba31989c55e7d9dbeef721c"),
+	"User" : "Nilima",
+	"Movie" : "HAHK",
+	"Rating" : 5
+}
+{
+	"_id" : ObjectId("5ba31989c55e7d9dbeef721d"),
+	"User" : "Sunil",
+	"Movie" : "INFINITY WAR",
+	"Rating" : 5
+}
+{
+	"_id" : ObjectId("5ba31989c55e7d9dbeef721e"),
+	"User" : "Anil",
+	"Movie" : "THE GHOAST",
+	"Rating" : 1
+}
+{
+	"_id" : ObjectId("5ba31989c55e7d9dbeef721f"),
+	"User" : "Sunil",
+	"Movie" : "HAHK",
+	"Rating" : 5
+}
+{
+	"_id" : ObjectId("5ba31989c55e7d9dbeef7220"),
+	"User" : "Anil",
+	"Movie" : "HAHK",
+	"Rating" : 5
+}
+{
+	"_id" : ObjectId("5ba31989c55e7d9dbeef7221"),
+	"User" : "Sunil",
+	"Movie" : "THE GHOAST",
+	"Rating" : 5
+}
+> var map = function(){emit(this.Movie, this.Rating)}
+> var reduce = function(movie,rating){return Array.avg(rating);}
+> var res = db.movie.mapReduce(map,reduce,{out:{inline:true}});
+> db.res.find();
+> db.Average.find();
+{ "_id" : "DDLJ", "value" : 4.333333333333333 }
+{ "_id" : "HAHK", "value" : 5 }
+{ "_id" : "INFINITY WAR", "value" : 5 }
+{ "_id" : "KASAM", "value" : 1.5 }
+{ "_id" : "SANAM", "value" : 2 }
+{ "_id" : "THE GHOAST", "value" : 3 }
+
+
+
