@@ -24,7 +24,7 @@ public class HangmanTest {
 	@Test			//To test whether incorrectGuess variable was initialized properly or not
 	public void testHangman2() {
 		
-		if(h.incorrectGuesses==0) {
+		/*if(h.incorrectGuesses==0) {
 			System.out.println("incorrectGuess was initialized successfully to 0");
 			assertTrue(true);
 		}
@@ -33,13 +33,14 @@ public class HangmanTest {
 		{
 			System.out.println("incorrectGuess was not intialized properly");
 			assertTrue(false);
-		}
-	}
+		} */
+		assertTrue("incorrectGuess not initialised to zero !",(h.incorrectGuesses==0));
+	} 
 	
 	@Test		//To test whether userInput frame  was initialized properly or not
 	public void testHangman3() {
 		
-		if("".equals(h.userInput.getText())) {
+		/*if("".equals(h.userInput.getText())) {
 			System.out.println("userInput frame was initialized successfully");
 			assertTrue(true);
 		}
@@ -48,13 +49,14 @@ public class HangmanTest {
 		{
 			System.out.println("userInput frames was not intialized properly");
 			assertTrue(false);
-		}
+		}*/
+		assertTrue("userInput textField not initialised to null !",h.userInput.getText().isEmpty());
 	}
 	
 	@Test		//To test whether letter frame  was initialized properly or not
 	public void testHangman4() {
 		
-		if("The letters you guess correctly go down here!".equals(h.letters.getText())) {
+		/*if("The letters you guess correctly go down here!".equals(h.letters.getText())) {
 			System.out.println("Letters frame was initialized successfully");
 			assertTrue(true);
 		}
@@ -63,7 +65,9 @@ public class HangmanTest {
 		{
 			System.out.println("Letters frame was not intialized properly");
 			assertTrue(false);
-		}
+		}*/
+		assertTrue("letters JLabel not initialised correctly !",h.letters.getText().equals("The letters you guess correctly go down here!"));
+		
 	}
 	
 	@Test  //To test whether wordselected frame  was initialized properly or not

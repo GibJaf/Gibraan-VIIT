@@ -1,0 +1,5 @@
+0,HELLO,*,*,Hi #Comma what is your name ?,tourism.aiml
+0,HI,*,*,<srai>HELLO</srai>,tourism.aiml
+0,HEY,*,*,<srai>HELLO</srai>,tourism.aiml
+0,MY NAME IS *,*,*,Nice to meet you <star/>,tourism.aiml
+0,DO YOU KNOW WHO * IS,*,*,WHO IS <star/>.,tourism.aiml

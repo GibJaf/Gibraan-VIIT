@@ -1,0 +1,17 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<aiml version = "1.0.1" encoding = "UTF-8"?>
+   <category>
+      <pattern>I am *</pattern>
+      <template>
+         Hello <set name = "username"> <star/>! </set>
+      </template>  
+   </category>  
+   
+   <category>
+      <pattern>Good Night</pattern>
+      <template>
+         Hi <get name = "username"/> Thanks for the conversation!
+      </template>  
+   </category>  
+   
+</aiml>

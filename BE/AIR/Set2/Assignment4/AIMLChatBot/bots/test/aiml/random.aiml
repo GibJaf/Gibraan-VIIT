@@ -1,0 +1,14 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<aiml version = "1.0.1" encoding ="UTF-8"?>
+   <category>
+      <pattern>HI</pattern>
+      
+      <template>
+         <random>
+            <li> Hello! </li>
+            <li> Hi! Nice to meet you! </li>
+         </random>
+      </template>
+      
+   <category>      
+</aiml>

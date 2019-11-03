@@ -1,0 +1,3 @@
+0,LET DISCUSS MOVIES,*,*,Yes <set name = "topic">movies</set>,topic.aiml
+0,*,*,movies,Watching good movie refreshes our minds.,topic.aiml
+0,I LIKE WATCHING COMEDY!,*,movies,I like comedy movies too.,topic.aiml

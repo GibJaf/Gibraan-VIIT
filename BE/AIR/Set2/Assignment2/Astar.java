@@ -10,27 +10,38 @@ int str1[][]= new int[3][3];// dummy state
   int a=0, b=0, c=0,n=1, x,bi,bj;
  int origNum, leftNum,rightNum,upNum,downNum;
 
+/* n  => number of current iteration
+   bi => row number of row containing 0
+   bj => column number of column containing 0
+
+*/
+
 //----------------------------------------------------------
 public void acceptStates()
 {
   
-  Scanner sc = new Scanner(System.in);
-  System.out.println("Enter the Start State: ");
+  //Scanner sc = new Scanner(System.in);
+  //System.out.println("Enter the Start State: ");
+  int arr[] = {1,2,3,4,0,5,6,7,8};
   for(int i=0;i<3;i++)
   {
     for(int j=0;j<3;j++)
     {
-      str[i][j]=sc.nextInt();
-	str1[i][j]=str[i][j];
+        //str[i][j]=sc.nextInt();
+	//str1[i][j]=str[i][j];
+	str[i][j] = arr[i*3+j];
+	str1[i][j] = arr[i*3+j];
     }
   }
 
-  System.out.println("Enter the Goal State: ");
+  int arr2[] = {4,1,3,0,2,5,6,7,8};
+  //System.out.println("Enter the Goal State: ");
   for(int i=0;i<3;i++)
   {
     for(int j=0;j<3;j++)
     {
-      goal[i][j]=sc.nextInt();
+      //goal[i][j]=sc.nextInt();
+      goal[i][j] = arr2[i*3+j];
     }
   }
 }
@@ -39,7 +50,7 @@ public void acceptStates()
 public  void displayStates()
 {
 	
-	  System.out.println(" Start State of iteration "+n);
+	  System.out.println(" State after iteration "+n);
 	  for(int i=0;i<3;i++)
 	  {
 	    for(int j=0;j<3;j++)
@@ -49,7 +60,7 @@ public  void displayStates()
 	     System.out.println(" ");
 	  }
 
-	  System.out.println(" Goal State of iteration "+n);
+	/*  System.out.println(" Goal State of iteration "+n);
 	  for(int i=0;i<3;i++)
 	  {
 	    for(int j=0;j<3;j++)
@@ -57,7 +68,7 @@ public  void displayStates()
 	      System.out.print(goal[i][j]+" ");
 	    }
 	     System.out.println(" ");
-	  }
+	  }*/
  n++;
 }
 //-------------------------------------------------------------------------------------------
@@ -67,7 +78,7 @@ public void puzzSolver()
 	 //   displayStates();
            for (a=0; a<5; ++a)
                  {
-                        countTiles();
+                         countTiles();
                          branch();
 			
                         //System.out.println(numCorrect);
@@ -89,6 +100,7 @@ public void countTiles()
                         }
                   }
 		}
+	    System.out.println(" numCorrect => "+numCorrect);
          
       }
 //----------------------------------------------------------------------------------------
@@ -97,7 +109,7 @@ public void branch()
             if (numCorrect<9)
                   {
                         //countTiles();
-                        locateSpace();                  //Locates the position of the blank space
+                        locateSpace();
                         //System.out.println(numCorrect);
                         checkNum();
                         getLarge();
@@ -118,19 +130,16 @@ public void branch()
  public void locateSpace()
       {
             
-            for (int  t=0; t<3; ++t)
-                  {
-			for(int s=0;s<3;s++)
-				{
-
-                        if (str1[t][s]==0)
-                              {
+            for (int  t=0;t<3;++t){
+		for(int s=0;s<3;s++){
+                	if (str1[t][s]==0){
                                     bi=t;
-				     bj=s;
+				    bj=s;
+				    //System.out.println(" bi => "+bi+"	bj => "+bj);
                                     return;
                               }
                   }
-      }
+            }
 }
 //--------------------------------------------------------------------------------------------------------
  public void checkNum()
@@ -334,6 +343,7 @@ public void makeMoveLeft()
 	Astar a = new Astar();	
      	a.acceptStates();
 	a.puzzSolver();
+	//a.displayStates();
    }
 
 }

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="1.0.1" encoding="UTF-8">
+
+
+  <category>
+	  <pattern>HELLO</pattern>
+	  <template>Hi , what is your name ?</template>
+  </category>
+
+  <category>
+	  <pattern>Hi</pattern>
+	  <template><srai>HELLO</srai></template>
+  </category>
+
+  <category>
+	  <pattern>Hey</pattern>
+	  <template><srai>HELLO</srai></template>
+  </category>
+
+  <category>
+	  <pattern>My name is *</pattern>
+	  <template>Nice to meet you <star/></template>
+  </category>
+
+
+
+   <category>
+	   <pattern>DO YOU KNOW WHO * IS</pattern>
+      <template>
+         WHO IS <star/>.
+      </template>
+   </category>
+   
+   <!--   <category>
+      <pattern>A * IS A *</pattern>
+      <template>
+         How <star index = "1"/> can not be a <star index = "2"/>?
+      </template>
+   </category> -->
+   
+</aiml>

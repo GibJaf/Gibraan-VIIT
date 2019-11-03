@@ -1,0 +1,7 @@
+0,WHO IS ALBERT EINSTEIN,*,*,Albert Einstein was a German physicist.,srai.aiml
+0,WHO IS Isaac NEWTON,*,*,Isaac Newton was a English physicist and mathematician.,srai.aiml
+0,DO YOU KNOW WHO * IS,*,*,<srai>WHO IS <star/></srai>,srai.aiml
+0,BYE,*,*,Good Bye!,srai.aiml
+0,BYE *,*,*,<srai>BYE</srai>,srai.aiml
+0,FACTORY,*,*,Development Center!,srai.aiml
+0,INDUSTRY,*,*,<srai>FACTORY</srai>,srai.aiml
