@@ -104,5 +104,7 @@ if __name__ == "__main__":
     print("decrypted plaintext =>  ",plain_decrypt)
 
 """ Features to improve => 
+
+This is a simulation . Not the real S-DES at bit level.
 1) Handle plaintext of size greater than 8 bits
 2) Check if key can be of length other than 10 bits """
