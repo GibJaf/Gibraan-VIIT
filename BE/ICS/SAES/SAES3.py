@@ -1,4 +1,7 @@
-""" Expects input plaintext as a string of characters like "hello"
+""" 
+    This is from the book TechKnowledge
+    
+    Expects input plaintext as a string of characters like "hello"
     Expects input key       as a string of 2 characters like "ok"
 """
 
@@ -19,7 +22,8 @@ def convertNumToAsciiBit(x): # coverts decimal to binary
             val = val % (pow(2, j))
             j -= 1
         y += ans
-    return y
+    # print("From convertNumToAsciiBit y =>",y)
+    return y # y is string of 16 characters of 0 and 1
 
 
 def convertAsciiToChar(x): # converts ASCII value to char
@@ -40,35 +44,42 @@ def keyExpansion(key): # generates 2 round keys
     x = [key[:4], key[4:8], key[8:12], key[12:16]]
     for i in range(4): # binary to decimal for each nible
         x[i] = list(map(int, x[i]))
+        #print(x)
         x[i] = x[i][0] * 8 + x[i][1] * 4 + x[i][2] * 2 + x[i][3]
+        #print(x,'\n')
     keylist = [x[0], x[1], x[2], x[3]]
+    #print("\nkeylist => ",keylist,'\n\n')
     for i in range(2):
         w2 = [0, 0, 0, 0]
         if i == 0:
             val = 8 # rcon for first round
         else:
             val = 3 # rcon for 2nd round
-        w2[0] = keylist[4 * i] ^ val ^ (sbox[keylist[4 * i + 3]])
-        w2[1] = keylist[4 * i + 1] ^ 0 ^ (sbox[keylist[4 * i + 2]])
-        w2[2] = w2[0] ^ keylist[4 * i + 2]
-        w2[3] = w2[1] ^ keylist[4 * i + 3]
+        w2[0] = keylist[4 * i] ^ val ^ (sbox[keylist[4 * i + 3]])        # Where did these formulae come from ?
+        w2[1] = keylist[4 * i + 1] ^ 0 ^ (sbox[keylist[4 * i + 2]])      #
+        w2[2] = w2[0] ^ keylist[4 * i + 2]                               #
+        w2[3] = w2[1] ^ keylist[4 * i + 3]                               #
         keylist.append(w2[0])
         keylist.append(w2[1])
         keylist.append(w2[2])
         keylist.append(w2[3])
-    return keylist # has all 3 sub-keys
+    #print("\n\nFrom KeyExpansion => ",keylist,"\n\n\n")
+    return keylist # has all 3 sub-keys . It is list of 12 numbers ranging from 0 to 15
 
 
 def getByteFromBit(x):# converts binary to bytes
+    #print("getByteFromBit i/p => ",x)
     y = []
     i = 0
     while i < (len(x)):
         y.append(8 * x[i] + 4 * x[i + 1] + 2 * x[i + 2] + x[i + 3])
         i += 4
+    #print("getByteFromBit o/p => ",y)
     return y
 
 
 def mixCols(y): # applies Mix-Columns
+    print("mixCols i/p  y => ",y)
     w = []
     for i in range(len(y)):
         val = y[i] * 4
@@ -77,11 +88,13 @@ def mixCols(y): # applies Mix-Columns
         if val >= 16:
             val ^= 19
         w.append(val)
+    print("w => ",w)
     ans = [0, 0, 0, 0]
     ans[0] = y[0] ^ w[1]
     ans[1] = y[1] ^ w[0]
     ans[2] = y[2] ^ w[3]
     ans[3] = y[3] ^ w[2]
+    print("mixCols o/p  ans => ",ans)
     return ans
 
 
@@ -149,42 +162,60 @@ def aesDecrypt(y, keylist): # applies Decryption Algorithm
 
 
 def aesEncrypt(y, keylist): # applies Encryption Algorithm
-    for i in range(len(y)):
-        y[i] ^= keylist[i % 4]
-    for i in range(1, 3):
+    print("aesEncrypt i/p => \ny = ",y,"\nkeylist = ",keylist,"\n")
+
+    print("Add RoundKey before Round 1 and 2")
+    for i in range(len(y)): # Add Round Key before Round 1 and 2 
+        y[i] ^= keylist[i % 4] # Probably %4 not required cuz len(y) will be 4
+    print("y => ",y)
+    print()
+
+
+    for i in range(1, 3):   # Rounds 1 and 2
+        print("\nRound",i)
         for j in range(len(y)):
             y[j] = sbox[y[j]]
-        y[1], y[3] = y[3], y[1]
-        if i != 2:
+        print("y => ",y," <= Substitute Bytes")
+        y[1], y[3] = y[3], y[1]  # Shift Row step
+        print("y => ",y," <= Shift Rows")
+        if i != 2:               # Executed only in 1st round
             y = mixCols(y)
         for j in range(len(y)):
-            y[j] = y[j] ^ keylist[4 * i + j]
+            y[j] = y[j] ^ keylist[4 * i + j] # Add Round Key 2
+        print("y => ",y," <= Add Round Key",i)
+    print("aesEncrypt o/p =>    y = ",y)
     return convertByteToBit(y)
 
 
 if __name__ == "__main__":
-    print("Note : Enter strings of character inputs eg : hello etc . Each character is considered to be of 1 byte")
-    x = input("Enter the plaintext : ") # any length char input
-    key = input("Enter the key : ") # char input of length 2
+    #print("Note : Enter strings of character inputs eg : hello etc . Each character is considered to be of 1 byte")
+    x = "he" # input("Enter the plaintext : ") # any length char input
+    key = "ok" #input("Enter the key : ") # char input of length 2
     if len(key) != 2:
         print("BAD KEY : Should be 16 bits ")
         exit(0)
     key = convertNumToAsciiBit(key)
+    print("key => ",key)
     keylist = keyExpansion(key)
-    print(keylist)
+    
+    #Basically making plaintext of even no. of characters by appending with character '#'
+    #Don't know reason for choosing '#'
     if len(x) % 2 != 0:
         x += '#'  # filler - #
     x = convertNumToAsciiBit(x)
+    print("x =>   ",x)
     x = list(map(int, x))
+    #print("x => ",x)
     i = 0
     cipher = ""
-    while i < len(x) - 1:
+    #print("length of x => ",len(x))
+    while i < len(x) - 1: #  Probably the -1 is useless . Anyway , there is much better way to write this loop
         y = getByteFromBit(x[i:i + 16])
         cipher += aesEncrypt(y, keylist)
         i += 16
     print("Cipher text after encryption is : ")
     print(cipher)
-    print(convertAsciiToChar(cipher))
+    print(convertAsciiToChar(cipher)) 
     x = list(map(int, cipher))
     i = 0
     plaintext = ""
