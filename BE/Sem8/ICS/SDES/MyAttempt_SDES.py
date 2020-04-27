@@ -1,3 +1,5 @@
+#!/bin/bash
+
 InputPerm = [2,6,3,1,4,8,5,7]
 FinalPerm = [4,1,3,5,7,2,8,6]
 
@@ -28,7 +30,11 @@ def keyGen(key):
     P10 = permuteKey(key,P10Table)
     s1 = LeftShift(P10[0:5],1)
     s2 = LeftShift(P10[5:10],1)
+    print("s1 => ",s1)
+    print("s2 => ",s2)
+    print("s1 + s2 =>",s1+s2)
     K1 = permuteKey(s1+s2,P8Table)
+    print("K1 => ",K1)
     s3 = LeftShift(s1,2)
     s4 = LeftShift(s2,2)
     K2 = permuteKey(s3+s4,P8Table)
@@ -79,6 +85,8 @@ def MatrixOperation(part, S_Matrix):
 
 def encrypt(plaintext):
     IP = permuteKey(plaintext,InputPerm)
+    print("Plain => ",plaintext)
+    print("IP    => ",IP)
     p1,p2 = fk_cycle(IP[0:4],IP[4:8],K1)
     p3,p4 = fk_cycle(p2,p1,K2)
     IP_inv = permuteKey(p3+p4,FinalPerm) 
@@ -94,9 +102,9 @@ def decrypt(ciphertext):
 
 if __name__ == "__main__":
     print("Note : Enter plaintext and key as strings of 0s and 1s eg: 01110010")
-    plaintext = input("Enter plaintext (length 8 bits) : ") # sample plaintext => "01110010"
+    plaintext = "01110010" # input("Enter plaintext (length 8 bits) : ") # sample plaintext => "01110010"
     """ If input greater than 8 bits , divide it into 8 bit blocks and encrypt each block """
-    key = input("Enter key (length 10 bits): ") # sample key => "1010000010"
+    key = "1010000010" #input("Enter key (length 10 bits): ") # sample key => "1010000010"
     K1 , K2 = keyGen(key)
     ciphertext = encrypt(plaintext)
     print("encrypted ciphertext => ",ciphertext)
